@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ValidationCompotent from './ValidationComponent/ValidationComponent';
-import CharComponent from './CharComponent/CharComponent';
+import CharList from './CharList/CharList';
 
 class App extends Component {
   state = {
@@ -32,19 +32,6 @@ class App extends Component {
   }
 
   render() {
-
-    const charArray = this.state.text.split('');
-
-    const charList = (
-      <div className="App-char-list">
-        <ul>
-          {charArray.map((char, index) => {
-            return <CharComponent click={()=>{this.charOnClickHandler(index)}} char={char} key={char+index+1}/>
-          })}
-        </ul>
-      </div>
-    );
-
     return (
       <div className="App">
         <header className="App-header">
@@ -52,7 +39,7 @@ class App extends Component {
           <h1 className="App-title">React: lists and condiotionals</h1>
         </header>
         <input className="App-main-input" onChange={this.inputOnChangeHandler} value={this.state.text}/>
-        {charList}
+        <CharList text={this.state.text} onCharClick={this.charOnClickHandler}/>
         <p>Text length: {this.state.textLegnth}</p>
         <ValidationCompotent textLegnth={this.state.textLegnth}/>
       </div>
