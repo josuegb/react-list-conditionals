@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ValidationCompotent from './ValidationComponent/ValidationComponent';
+import CharComponent from './CharComponent/CharComponent';
 
 class App extends Component {
   state = {
@@ -18,7 +20,31 @@ class App extends Component {
     });
   }
 
+  charOnClickHandler = (charIndex) => {
+    const charArray = this.state.text.split('');
+    charArray.splice(charIndex, 1);
+
+    const updatedText = charArray.join('');
+
+    this.setState({
+        text : updatedText
+    });
+  }
+
   render() {
+
+    const charArray = this.state.text.split('');
+
+    const charList = (
+      <div className="App-char-list">
+        <ul>
+          {charArray.map((char, index) => {
+            return <CharComponent click={()=>{this.charOnClickHandler(index)}} char={char} key={char+index+1}/>
+          })}
+        </ul>
+      </div>
+    );
+
     return (
       <div className="App">
         <header className="App-header">
@@ -26,8 +52,9 @@ class App extends Component {
           <h1 className="App-title">React: lists and condiotionals</h1>
         </header>
         <input className="App-main-input" onChange={this.inputOnChangeHandler} value={this.state.text}/>
+        {charList}
         <p>Text length: {this.state.textLegnth}</p>
-        <p>Text: {this.state.text}</p>        
+        <ValidationCompotent textLegnth={this.state.textLegnth}/>
       </div>
     );
   }
