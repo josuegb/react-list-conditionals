@@ -1,3 +1,7 @@
+body * {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -12,14 +16,23 @@
   height: 150px;
   padding: 20px;
   color: white;
+  margin-bottom: 30px;
+}
+
+.App-main-input {
+  width: 175px;
+  text-align: center;
 }
 
 .App-title {
   font-size: 1.5em;
 }
 
-.App-intro {
-  font-size: large;
+.App-char-list ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
 }
 
 @keyframes App-logo-spin {
